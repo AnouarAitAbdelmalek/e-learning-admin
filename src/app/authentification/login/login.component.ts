@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
       .authentificate(this.username?.value, this.password?.value)
       .subscribe(
         (data) => {
-          console.log("1");
           this.loginInvalid = false;
           this.router.navigate(['/acceuil']);
         },
