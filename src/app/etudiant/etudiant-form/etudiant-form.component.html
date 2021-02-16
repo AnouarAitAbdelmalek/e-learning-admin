@@ -1,0 +1,76 @@
+<form [formGroup]="etudiantForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-header>
+        
+      </mat-card-header>
+    
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Nom</mat-label>
+          <input required matInput formControlName="nom"  placeholder="Nom">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>Prénom</mat-label>
+          <input required matInput formControlName="prenom"  placeholder="Prénom">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>Téléphone</mat-label>
+          <input required matInput type="tel" formControlName="telephone" pattern="0[6-7][0-9]{8}" maxlength="10" placeholder="Téléphone">
+          <mat-icon matSuffix>call</mat-icon>
+          <mat-hint>Format: 06XXXXXXXX ou 07XXXXXXXX</mat-hint>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>Adresse</mat-label>
+          <input required matInput formControlName="adresse"  placeholder="Adresse">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input required matInput formControlName="email"  placeholder="Email">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-hint>Ex: anonyme@exemple.com</mat-hint>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>CIN ou Passeport</mat-label>
+          <input required matInput formControlName="cin"  placeholder="CIN ou Passeport">
+          <mat-icon matSuffix>perm_identity</mat-icon>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input required matInput formControlName="username"  placeholder="Placeholder">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>Mot de passe</mat-label>
+          <input required matInput formControlName="password"  placeholder="Placeholder">
+          <mat-icon matSuffix>vpn_key</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline" id="image-upload" >
+          <mat-label>Choisir une image</mat-label>
+          <ngx-mat-file-input  (change)="onFileSelected($event)" #removableInput formControlName="image" [accept]="'image/*'" ></ngx-mat-file-input>
+          <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-form-field>
+    
+    
+      </mat-card-content>
+    
+      <mat-card-footer>
+        
+        <button mat-fab color="primary" type="submit" [disabled]="!etudiantForm.valid">
+          <mat-icon>check</mat-icon> Valider
+        </button>
+        <button mat-fab type="reset" color="warn">
+          <mat-icon>refresh</mat-icon> Rénitialiser
+        </button>
+      </mat-card-footer>
+    </mat-card>
+    </form>

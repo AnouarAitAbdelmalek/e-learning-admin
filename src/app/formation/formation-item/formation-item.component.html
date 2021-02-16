@@ -1,0 +1,112 @@
+<mat-card class="mat-elevation-z0">
+      <mat-card-header>
+          
+          <div>
+              <img style="height: 250px;" src="{{formation.image}}">
+          </div>
+          <div>
+              <p><b>Titre : </b> {{formation.titre}}</p>
+              <p><b>Date début : </b> {{formation.dateDebut | date: 'dd-MM-yyyy' }}</p>
+              <p><b>Date fin : </b> {{formation.dateFin | date: 'dd-MM-yyyy' }}</p>
+              <p><b>Nombre participants : </b> {{formation.etudiants ? formation.etudiants.length : 0}}</p>
+              <p><b>Note : </b> {{formation.note ? formation.note : "Non définie"}}</p>
+              <p><b>Prix : </b> {{formation.prix}} DH</p>
+          </div>
+          <div id="description">
+              <p><b>Description : </b></p>
+              <p>{{formation.description}}</p>
+          </div>
+      </mat-card-header>
+  
+      <mat-card-content >
+
+        <br>
+          <h1 style="text-align: center;">
+            <button mat-raised-button id="participants" type="button" (click)="goToEtudiants(formation)" >
+              <mat-icon>list</mat-icon> Liste des participants <mat-icon>forward</mat-icon>
+            </button>
+          </h1>
+         
+
+          <br>
+          <h1 style="text-align: center;"><b>Séances : </b></h1>
+          
+          <br>
+              <div id="seances">
+            
+                <mat-card class="seance-container" *ngFor="let seance of seances; let i=index">
+                  <div style="display: flex;">
+                    <span><b>Séance {{i+1}}:</b></span>
+                    <span class="example-spacer"></span>
+                    <button mat-mini-fab color="warn" type="button" (click)="openDialog(seance)" >
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </div>
+                  
+                  
+                  <mat-card-content class="card-seance">
+                    <div><b>Titre : </b> {{seance.titre}}</div>
+                    <div><b>Créneau horaire : </b> {{seance.creneau}}</div>                        
+
+                  </mat-card-content>
+                </mat-card>
+
+                
+            
+              </div>          
+      
+        </mat-card-content>
+  
+    <mat-card-footer>
+
+      <form [formGroup]="seanceForm"  (ngSubmit)="onSubmit()">
+
+        <mat-card class="seance-container" >
+          <p><b>Nouvelle séance:</b></p>
+          <mat-card-content class="new-card-seance">
+              <mat-form-field  class="form-fields" appearance="fill">
+                  <mat-label>Titre</mat-label>
+                  <input required matInput formControlName="titre"  placeholder="Titre">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Choisir le jour</mat-label>
+                <input matInput [matDatepicker]="picker" [min]="formation.dateDebut" [max]="formation.dateFin" formControlName="jour" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Créneau</mat-label>
+                <mat-select formControlName="creneau" required>
+                  <mat-option>--</mat-option>
+                  <mat-option value="1">8h - 10h</mat-option>
+                  <mat-option value="2">10h - 12h</mat-option>
+                  <mat-option value="3">14h - 16h</mat-option>
+                  <mat-option value="4">16h - 18h</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+                
+              
+          </mat-card-content>
+
+          <div id="add-btn">
+            <button mat-fab color="basic" type="button" type="submit" [disabled]="!seanceForm.valid" >
+              <mat-icon>add</mat-icon> Ajouter Séance
+            </button>
+          </div>
+          
+        </mat-card>
+        
+        
+
+
+      </form>
+      
+      
+    </mat-card-footer>
+  </mat-card>
+
+
+

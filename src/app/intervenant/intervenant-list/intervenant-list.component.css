@@ -1,0 +1,60 @@
+.card {
+  width: 300px;
+  border-radius: 0;
+  margin: 10px 0;
+}
+
+#card-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.header-card {
+  height: 100px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 75px;
+  background-color: white;
+}
+
+.card-data {
+  height: 150px;
+}
+
+#search-div {
+  align-items: center;
+  min-height: 120px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#main-card-footer {
+  height: 120px;
+  display: flex;
+}
+
+mat-paginator {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px;
+  font-size: 1.2em;
+  color: #173f5f;
+  flex-wrap: wrap-reverse;
+  width: 100%;
+}
+
+mat-form-field {
+  font-size: 1.5em;
+  width: 300px;
+}
+
+button:focus {
+  outline: 0;
+}

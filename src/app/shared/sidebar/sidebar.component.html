@@ -1,0 +1,107 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar id="logo" >
+      <a mat-list-item routerLink="">
+        <img src="../../../assets/images/logo/logo-admin.png" />
+        E-Learning
+      </a>
+    </mat-toolbar>
+    <mat-nav-list>
+      
+    
+    <mat-expansion-panel class="menu-panel" hideToggle [disabled]="step === 0" [expanded]="step === 0" (opened)="setStep(0)">
+      <mat-expansion-panel-header>
+        <a mat-list-item disabled>
+          <img src="../../../assets/images/formation.png" /> Formations
+        </a>
+      </mat-expansion-panel-header>
+      
+      <a mat-list-item routerLink="categorieList" >
+        <mat-icon>list</mat-icon> Liste
+      </a>
+      <br>
+      <a mat-list-item routerLink="formationForm">
+        <mat-icon>add</mat-icon> Ajouter
+      </a>
+      
+    </mat-expansion-panel>
+    <mat-expansion-panel class="menu-panel" hideToggle [disabled]="step === 1" [expanded]="step === 1" (opened)="setStep(1)">
+      <mat-expansion-panel-header>
+        <a mat-list-item disabled>
+          <img src="../../../assets/images/intervenant.png" /> Intérvenants
+        </a>
+      </mat-expansion-panel-header>
+      
+      <a mat-list-item routerLink="intervenantList" >
+        <mat-icon>list</mat-icon> Liste
+      </a>
+      <br>
+      <a mat-list-item routerLink="intervenantForm">
+        <mat-icon>add</mat-icon> Ajouter
+      </a>
+      
+    </mat-expansion-panel>
+    <mat-expansion-panel class="menu-panel" hideToggle [disabled]="step === 2" [expanded]="step === 2" (opened)="setStep(2)">
+      <mat-expansion-panel-header>
+        <a mat-list-item disabled>
+          <img src="../../../assets/images/admin.png" /> Administrateurs
+        </a>
+      </mat-expansion-panel-header>
+      
+      <a mat-list-item routerLink="adminList" >
+        <mat-icon>list</mat-icon> Liste
+      </a>
+      <br>
+      <a mat-list-item routerLink="adminForm">
+        <mat-icon>add</mat-icon> Ajouter
+      </a>
+      
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="menu-panel" hideToggle [disabled]="true" [expanded]="false"   routerLink="etudiantList">
+      <mat-expansion-panel-header>
+        <a mat-list-item disabled>
+          <img src="../../../assets/images/etudiant.png" /> Étudiants
+        </a>
+      </mat-expansion-panel-header>
+      
+      <a mat-list-item  >
+        <mat-icon>list</mat-icon> Liste
+      </a>
+      
+    </mat-expansion-panel>
+    
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar id="navbar">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>{{title}}</span>
+      <span class="example-spacer"></span>
+      <a mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>person_outline</mat-icon>
+      </a>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item routerLink="logout">
+          <mat-icon>exit_to_app</mat-icon> Se déconnecter
+        </a>
+      </mat-menu>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    <!-- <footer id="page-footer">
+      <p>Copyright &copy; 2021 ENSA Marrakech Projet de semestre GI-3</p>
+    </footer> -->
+  </mat-sidenav-content>
+  
+</mat-sidenav-container>
+

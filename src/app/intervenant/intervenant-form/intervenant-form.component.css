@@ -1,0 +1,44 @@
+mat-card-header {
+  height: 138px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card-footer {
+  height: 140px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+mat-card-footer button {
+  width: 150px;
+  font-size: 1.2em;
+}
+
+mat-card-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+mat-form-field {
+  flex: 1 0 40%;
+  margin: auto 5%;
+  min-width: 300px;
+  max-width: 40%;
+  height: 125px;
+  font-size: 1.2em;
+}
+
+button:focus {
+  outline: 0;
+}
+
+#image-upload {
+  text-align: center;
+}

@@ -1,0 +1,46 @@
+<div id="search-div">
+  <mat-form-field>
+    <mat-label>Filtre</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" />
+    <span class="material-icons" mat-button matSuffix mat-icon-button>
+      search
+    </span>
+  </mat-form-field>
+</div>
+
+<mat-card id="main-card"  class="mat-elevation-z0">
+  <mat-card-content id="card-container">
+    <mat-card *ngFor="let ADMIN of obs | async" class="card">
+        <mat-card-header class="header-card">
+          <mat-card-title>{{ADMIN.nom}} {{ADMIN.prenom}}</mat-card-title>
+          <mat-card-subtitle><b>Username:</b> {{ADMIN.username}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image style="height: 230px;" src={{ADMIN.image}}>
+        <mat-card-content class="card-data">
+          <p><b>Cin:</b> {{ADMIN.cin}}</p>
+          <p><b>Tel:</b> {{ADMIN.telephone}}</p>
+          <p style=" word-break: break-all"><b>Email:</b> {{ADMIN.email}}</p>
+          <p><b>Adresse:</b> {{ADMIN.adresse}}</p>
+        </mat-card-content>
+        <mat-card-footer class="card-footer">
+            <div class="button-container">
+          <button mat-fab class="bg-info"  (click)="goToAdmin(ADMIN.id)">
+              <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+          <div class="button-container">
+            <button mat-fab class="bg-danger" (click)="openDialog(ADMIN)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card-footer>
+      </mat-card>
+    </mat-card-content>
+    
+    <mat-card-footer id="main-card-footer">
+      <mat-paginator 
+              [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+    </mat-card-footer>
+</mat-card>

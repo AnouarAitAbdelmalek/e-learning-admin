@@ -1,0 +1,102 @@
+mat-card-header {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.5em;
+  background-color: #173f5f;
+  color: #ffffff;
+}
+
+#description {
+  margin: 25px auto;
+  width: 90%;
+}
+
+mat-card-header div {
+  margin-left: 10px;
+}
+
+mat-form-field {
+  min-width: 300px;
+  width: 400px;
+  height: 110px;
+  font-size: 1.2em;
+}
+
+#seances {
+  background-color: #173f5f;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.seance-container {
+  width: 90%;
+  margin: 10px auto;
+  font-size: 1.2em;
+}
+
+.card-seance {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1em;
+  flex-wrap: wrap;
+}
+.card-seance div {
+  padding: 10px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+footer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.new-card-seance {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#add-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#add-btn button {
+  width: 200px;
+  font-size: 1.2em;
+  padding: auto 10px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+img {
+  width: 300px;
+  height: auto;
+}
+
+#participants {
+  font-size: larger;
+  height: 50px;
+  background-color: #173f5f;
+  color: #ffffff;
+}
+
+* {
+  caret-color: transparent;
+}
+
+input {
+  caret-color: auto;
+}

@@ -1,0 +1,81 @@
+<form [formGroup]="formationForm" (ngSubmit)="onSubmit()">
+    <mat-card class="mat-elevation-z0">
+        <mat-card-header>
+            Nouvelle formation
+        </mat-card-header>
+    
+        <mat-card-content>
+          
+            <mat-form-field class="form-fields"  appearance="fill">
+              <mat-label>Titre</mat-label>
+              <input required matInput formControlName="titre"  placeholder="Titre">
+            </mat-form-field>
+
+            <mat-form-field class="form-fields"  appearance="fill">
+              <mat-label>Catégorie</mat-label>
+              <mat-select formControlName="categorie" required>
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let categorie of categories " [value]="categorie">
+                    {{categorie.designation}}
+                  </mat-option>
+                  </mat-select>
+          </mat-form-field>
+
+         
+            <mat-form-field class="form-fields"  appearance="fill">
+                <mat-label>Intérvenant</mat-label>
+                <mat-select formControlName="intervenant" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let INTERVENANT of intervenants " [value]="INTERVENANT">
+                      {{INTERVENANT.nom}} {{INTERVENANT.prenom}} 
+                    </mat-option>
+                    </mat-select>
+            </mat-form-field>
+
+            
+
+            <mat-form-field class="form-fields"  appearance="fill">
+              <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input [min]="today" [rangePicker]="picker">
+                <input matStartDate placeholder="Date début"  formControlName="dateDebut">
+                <input matEndDate placeholder="Date fin" formControlName="dateFin">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker touchUi #picker></mat-date-range-picker>
+            </mat-form-field>
+
+            <mat-form-field class="form-fields"  appearance="fill">
+              <mat-label>Prix</mat-label>
+              <input required matInput type="number" formControlName="prix"  placeholder="Prix">
+              <span matSuffix>DH</span>
+            </mat-form-field>
+
+
+            <mat-form-field  appearance="outline" class="form-fields" id="image-upload" >
+              <mat-label>Choisir une image</mat-label>
+              <ngx-mat-file-input  (change)="onFileSelected($event)" #removableInput formControlName="image" [accept]="'image/*'" ></ngx-mat-file-input>
+              <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </mat-form-field>
+        
+            <mat-form-field class="form-fields"  appearance="fill" id="textarea">
+                <mat-label>Description</mat-label>
+                <textarea required matInput formControlName="description" placeholder="Description"></textarea>
+              </mat-form-field>
+        
+        
+          </mat-card-content>
+    
+      <mat-card-footer>
+        
+        <button mat-fab color="primary" type="submit" [disabled]="!formationForm.valid">
+          <mat-icon>check</mat-icon> Valider
+        </button>
+        <button mat-fab type="reset" color="warn">
+          <mat-icon>refresh</mat-icon> Rénitialiser
+        </button>
+      </mat-card-footer>
+    </mat-card>
+    </form>
+

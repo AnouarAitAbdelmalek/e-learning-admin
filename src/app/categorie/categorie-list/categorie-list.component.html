@@ -1,0 +1,35 @@
+<div id="header">
+      
+      <mat-expansion-panel hideToggle>
+          
+          <mat-expansion-panel-header>
+                <mat-icon>add</mat-icon>
+                  Ajouter une nouvelle catégorie
+          </mat-expansion-panel-header>
+          <form [formGroup]="catForm">
+              <input type="text" formControlName="designation" (keyup)="onChange($event)">
+              <button mat-mini-fab color="warn" type="reset" (click)="ajouterCategorie()" [disabled]="length === 0"><mat-icon>add</mat-icon></button>
+            </form>
+      </mat-expansion-panel>
+  </div>
+  <div id="card-container">
+    <div id="formationList">
+      <button mat-button color="warn" (click)="goToAllFormations()" >Toutes les formations</button>
+
+    </div>
+      <mat-card *ngFor="let CATEGORIE of obs | async " class="categorie">
+          <p>{{CATEGORIE.designation}}</p>
+          <span class="example-spacer"></span>
+          <div class="button-container">
+            <button mat-mini-fab class="bg-info" (click)="goToFormations(CATEGORIE.id)">
+                <mat-icon>list</mat-icon>
+            </button>
+          
+              <button mat-mini-fab class="bg-danger" (click)="openDialog(CATEGORIE)">
+                <mat-icon>delete</mat-icon>
+              </button>
+          </div>
+      </mat-card>
+      
+</div>
+  

@@ -1,0 +1,48 @@
+<div id="search-div">
+    <mat-form-field>
+      <mat-label>Filtre</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" />
+      <span class="material-icons" mat-button matSuffix mat-icon-button>
+        search
+      </span>
+    </mat-form-field>
+  </div>
+  
+  <mat-card class="mat-elevation-z0">
+    <mat-card-content id="card-container">
+      <mat-card *ngFor="let FORMATION of obs | async" class="card">
+          <mat-card-header class="header-card">
+            <mat-card-title>{{FORMATION.titre}}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image style="height: 238px;" src="{{FORMATION.image}}">
+          <mat-card-content class="card-data">
+            
+            <p><b>Date début :</b> {{FORMATION.dateDebut | date: 'dd-MM-yyyy' }}</p>
+            <p><b>Date fin :</b> {{FORMATION.dateFin | date: 'dd-MM-yyyy' }}</p>
+            <p><b>Nombre participants:</b> {{FORMATION.etudiants ? FORMATION.etudiants.length : 0}}</p>
+            <p><b>Intérvenant :</b> {{FORMATION.intervenant.nom}} {{FORMATION.intervenant.prenom}} </p> 
+            <p><b>Prix :</b> {{FORMATION.prix}} DH</p>
+          </mat-card-content>
+          <mat-card-footer class="card-footer">
+              <div class="button-container">
+            <button mat-fab class="bg-info" (click)="goToFormation(FORMATION.id)">
+                <mat-icon>visibility</mat-icon>
+            </button>
+          </div>
+            <div class="button-container">
+              <button mat-fab class="bg-danger" (click)="openDialog(FORMATION)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </mat-card-footer>
+        </mat-card>
+      </mat-card-content>
+      
+      <mat-card-footer id="main-card-footer">
+        <mat-paginator 
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+      </mat-card-footer>
+  </mat-card>
+  

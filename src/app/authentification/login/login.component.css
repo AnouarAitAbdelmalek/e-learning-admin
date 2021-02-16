@@ -1,0 +1,22 @@
+.card {
+  width: 40%;
+
+  margin: 2em auto;
+
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+  margin: 25px auto;
+
+  font-size: 1.2em;
+}
+
+#container {
+  display: flex;
+  justify-content: flex-start;
+  height: 100%;
+  align-items: center;
+  background-image: url("../../../assets/images/login.jpg");
+}
