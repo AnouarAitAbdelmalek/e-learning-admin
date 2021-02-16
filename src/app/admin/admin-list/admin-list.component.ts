@@ -30,6 +30,7 @@ export class AdminListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.adminService.findAll().subscribe(
       (data) => {
+        console.log(data);
         this.ADMINS = data
         this.dataSource.data= this.ADMINS;
       },

@@ -11,7 +11,7 @@ export class AdminService {
   private adminUrl: string;
 
   constructor(private http: HttpClient) {
-    this.adminUrl = 'http://localhost:5001/admins';
+    this.adminUrl = 'http://localhost:8081/api/admins';
   }
   public findAll(): Observable<Admin[]> {
     /*let username = 'admin';

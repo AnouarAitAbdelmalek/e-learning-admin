@@ -12,6 +12,8 @@ import { FormationModule } from './formation/formation.module';
 import { CategorieModule } from './categorie/categorie.module';
 import { SeanceModule } from './seance/seance.module';
 import { AuthentificationModule } from './authentification/authentification.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BasicAuthHttpInterceptorService } from './authentification/service/basic-auth-http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,13 @@ import { AuthentificationModule } from './authentification/authentification.modu
     SeanceModule,
     AuthentificationModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BasicAuthHttpInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
