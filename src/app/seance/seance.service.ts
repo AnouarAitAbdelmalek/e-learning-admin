@@ -14,28 +14,17 @@ export class SeanceService {
   constructor(
     private http: HttpClient
     ) {
-    this.seanceUrl = 'http://localhost:5001/seances';
+    this.seanceUrl = 'http://localhost:8081/api/seance';
   }  
 
   public find(id: number): Observable<Seance> {
-    return this.http.get<Seance>(`${this.seanceUrl}/${id}`);
+    return this.http.get<Seance>(`${this.seanceUrl}s?id=${id}`);
   }
 
   public save(seance: Seance) {
-    /*let username = 'formation';
-    let password = 'formation';
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + btoa(username + ':' + password),
-    });*/
-
-    return this.http.post<Seance>(this.seanceUrl, seance);
+    return this.http.post<Seance>(this.seanceUrl+"s", seance);
   }
   delete(id: number): Observable<any> {
-    /*let username = 'formation';
-    let password = 'formation';
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + btoa(username + ':' + password),
-    });*/
 
     return this.http.delete(`${this.seanceUrl}/${id}`);
   }

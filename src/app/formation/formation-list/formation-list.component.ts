@@ -42,9 +42,9 @@ export class FormationListComponent implements OnInit {
     if(this.activatedRoute.snapshot.params['idCat'])
     {
       this.id = this.activatedRoute.snapshot.params['idCat'];
-      this.catService.find(this.id).subscribe(
+      this.catService.findFormations(this.id).subscribe(
         (data) => {
-          this.FORMATIONS = data.formations;
+          this.FORMATIONS = data;
           this.dataSource.data= this.FORMATIONS;
         },
         (error) => console.log(error)
@@ -53,10 +53,10 @@ export class FormationListComponent implements OnInit {
     else if(this.activatedRoute.snapshot.params['idInter'])
     {
       this.id = this.activatedRoute.snapshot.params['idInter'];
-      this.intervenantService.find(this.id).subscribe(
+      this.intervenantService.findFormations(this.id).subscribe(
         (data) => {
-          this.FORMATIONS = data.formations;
-          this.dataSource.data= this.FORMATIONS;
+          this.FORMATIONS=data;
+          this.dataSource.data=this.FORMATIONS;
         },
         (error) => console.log(error)
       );

@@ -72,7 +72,8 @@ export class AdminItemComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.adminService.find(this.id).subscribe((data) => {
-      this.admin = data;
+      console.log(data[0]);
+      this.admin = data[0];
       this.nom?.setValue(this.admin.nom);
       this.prenom?.setValue(this.admin.prenom);
       this.telephone?.setValue(this.admin.telephone);

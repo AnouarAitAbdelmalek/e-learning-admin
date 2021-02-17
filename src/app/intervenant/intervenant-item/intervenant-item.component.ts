@@ -71,7 +71,7 @@ export class IntervenantItemComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.intervenantService.find(this.id).subscribe((data) => {
-      this.intervenant = data;
+      this.intervenant = data[0];
       this.nom?.setValue(this.intervenant.nom);
       this.prenom?.setValue(this.intervenant.prenom);
       this.telephone?.setValue(this.intervenant.telephone);

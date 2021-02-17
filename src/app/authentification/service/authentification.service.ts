@@ -22,7 +22,6 @@ export class AuthentificationService {
          map(value => {
            sessionStorage.setItem('jwt',value.jwt)
            sessionStorage.setItem('user',JSON.stringify(value.user));
-           console.log(value);
            return value;
          }),
          catchError(err => {

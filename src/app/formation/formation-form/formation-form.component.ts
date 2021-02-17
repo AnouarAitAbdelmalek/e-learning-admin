@@ -92,11 +92,26 @@ export class FormationFormComponent implements OnInit {
 
   onSubmit() {
     this.formation = this.formationForm.value;
-    this.formation.image = "../../../assets/images/"+this.selectedImage.name;
+    this.formation.image = "";
     console.log(this.formation);
     this.formationService
       .save(this.formation)
-      .subscribe((result) => this.gotoFormationList());
+      .subscribe((result) => {
+        this.formationService.saveImage(result.id,this.selectedImage).subscribe(
+          data => {
+            setTimeout(()=>{
+              
+              this.gotoFormationList();
+
+            },2000)
+            
+          }
+        )
+
+
+        
+      }
+        );
   }
 
   gotoFormationList() {

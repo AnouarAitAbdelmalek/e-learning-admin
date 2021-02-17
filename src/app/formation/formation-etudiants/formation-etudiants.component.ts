@@ -22,8 +22,8 @@ export class FormationEtudiantsComponent implements OnInit {
   idFormation=this.activatedRoute.snapshot.params['id'];
   formation: Formation = new Formation();
 
-  ajouterEtudiant(id: number): void {
-    this.formationService.find(this.idFormation).subscribe(
+ /*  ajouterEtudiant(id: number): void {
+    this.formationService.findEtudiants(this.idFormation).subscribe(
       (data) => {
         this.formation = data;
         this.etudiantService.find(id).subscribe(
@@ -35,7 +35,7 @@ export class FormationEtudiantsComponent implements OnInit {
         )
       }
     )
-  }
+  } */
   
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -50,9 +50,10 @@ export class FormationEtudiantsComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.etudiantService.findAll().subscribe(
+    let id=this.activatedRoute.snapshot.params['id'];
+    this.formationService.findEtudiants(id).subscribe(
       (data) => {
-        this.ETUDIANTS = data
+        this.ETUDIANTS = data;
         // this.formationService.find(this.idFormation).subscribe(
         //   (data) => {
             

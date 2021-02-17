@@ -64,15 +64,27 @@ export class AdminFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+  
 
   onSubmit() {
     this.admin = this.adminForm.value;
-    
-    this.admin.image =  "../../../assets/images/"+this.selectedImage.name;
+    this.admin.image="";
     console.log(this.admin);
     this.adminService
       .save(this.admin)
-      .subscribe((result) => this.gotoAdminList());
+      .subscribe((result) => {
+        this.adminService.saveImage(result.id,this.selectedImage).subscribe(
+          data => {
+            setTimeout(()=>{
+              this.gotoAdminList();
+
+            },2000)
+            
+          }
+        )
+
+        
+      });
   }
 
   gotoAdminList() {
@@ -84,5 +96,7 @@ export class AdminFormComponent implements OnInit {
     this.selectedImage = target.files![0];
     console.log(this.selectedImage);
   }
+  
+ 
 
 }

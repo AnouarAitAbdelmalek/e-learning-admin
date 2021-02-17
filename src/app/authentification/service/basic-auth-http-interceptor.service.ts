@@ -12,7 +12,6 @@ export class BasicAuthHttpInterceptorService {
       sessionStorage.getItem('jwt') &&
       sessionStorage.getItem('user')
     ) {
-      console.log(sessionStorage.getItem('jwt'));
       const cloned = req.clone({
         headers: req.headers.set("Authorization",
             "Bearer " + sessionStorage.getItem('jwt'))

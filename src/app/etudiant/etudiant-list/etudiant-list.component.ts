@@ -94,4 +94,10 @@ export class EtudiantListComponent implements OnInit {
     }
   }
 
+  etudiantImage(etudiant:Etudiant)
+  {
+    if(etudiant.image===null) return "../../../assets/images/profile.png"
+    return etudiant.image;
+  }
+
 }

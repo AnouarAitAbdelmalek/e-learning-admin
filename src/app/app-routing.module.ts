@@ -17,6 +17,7 @@ import { IntervenantListComponent } from './intervenant/intervenant-list/interve
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { FormationEtudiantsComponent } from './formation/formation-etudiants/formation-etudiants.component';
 import { LoginComponent } from './authentification/login/login.component';
+import { AuthGuardService } from './authentification/service/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
   {
     path: '',
     component: SidebarComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: '',

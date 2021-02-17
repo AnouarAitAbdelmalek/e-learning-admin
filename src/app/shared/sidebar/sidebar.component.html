@@ -92,7 +92,7 @@
         <mat-icon>person_outline</mat-icon>
       </a>
       <mat-menu #menu="matMenu">
-        <a mat-menu-item routerLink="logout">
+        <a mat-menu-item (click)="logOut()">
           <mat-icon>exit_to_app</mat-icon> Se déconnecter
         </a>
       </mat-menu>

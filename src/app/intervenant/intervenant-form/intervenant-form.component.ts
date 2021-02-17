@@ -68,11 +68,24 @@ export class IntervenantFormComponent implements OnInit {
 
   onSubmit() {
     this.intervenant = this.intervenantForm.value;
-    this.intervenant.image = "../../../assets/images/"+this.selectedImage.name;
+    this.intervenant.image="";
     console.log(this.intervenant);
     this.intervenantService
       .save(this.intervenant)
-      .subscribe((result) => this.gotoIntervenantList());
+      .subscribe((result) => 
+      { 
+        this.intervenantService.saveImage(result.id,this.selectedImage).subscribe(result =>
+          {
+            setTimeout(()=>{
+              this.gotoIntervenantList();
+
+            },2000)
+            
+          })
+      }
+      
+      
+      );
   }
 
   gotoIntervenantList() {

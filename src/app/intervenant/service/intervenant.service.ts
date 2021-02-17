@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Formation } from 'src/app/formation/model/formation';
 import { Intervenant } from '../model/intervenant';
 
 @Injectable({
@@ -11,7 +12,7 @@ export class IntervenantService {
   private intervenantUrl: string;
 
   constructor(private http: HttpClient) {
-    this.intervenantUrl = 'http://localhost:5001/intervenants';
+    this.intervenantUrl = 'http://localhost:8081/api/intervenant';
   }
   public findAll(): Observable<Intervenant[]> {
     /*let username = 'intervenant';
@@ -20,12 +21,17 @@ export class IntervenantService {
       Authorization: 'Basic ' + btoa(username + ':' + password),
     });*/
 
-    return this.http.get<Intervenant[]>(this.intervenantUrl);
+    return this.http.get<Intervenant[]>(this.intervenantUrl+"s");
   }
 
-  public find(id: number): Observable<Intervenant> {
-    return this.http.get<Intervenant>(`${this.intervenantUrl}/${id}`);
+  public find(id: number): Observable<Intervenant[]> {
+    return this.http.get<Intervenant[]>(`${this.intervenantUrl}s?id=${id}`);
   }
+  public findFormations(id:number): Observable<Formation[]>
+  {
+    return this.http.get<Formation[]>(`${this.intervenantUrl}/${id}/formations`);
+  }
+
 
   public save(intervenant: Intervenant) {
     /*let username = 'intervenant';
@@ -34,7 +40,22 @@ export class IntervenantService {
       Authorization: 'Basic ' + btoa(username + ':' + password),
     });*/
 
-    return this.http.post<Intervenant>(this.intervenantUrl, intervenant);
+    return this.http.post<Intervenant>(this.intervenantUrl+"s", intervenant);
+  }
+
+  public saveImage(id:number,image:File) {
+    /*let username = 'admin';
+    let password = 'admin';
+    const headers = new HttpHeaders({
+      Authorization: 'Basic ' + btoa(username + ':' + password),
+    });*/
+    const formData: FormData = new FormData();
+
+    formData.append('image', image);
+    return this.http.post<Intervenant>("http://localhost:8081/api/intervenantPicture/"+id, formData,{
+      reportProgress: true,
+      responseType: 'json'
+    });
   }
   delete(id: number): Observable<any> {
     /*let username = 'intervenant';

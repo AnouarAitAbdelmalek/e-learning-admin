@@ -49,8 +49,10 @@ export class FormationItemComponent implements OnInit {
   ngOnInit(): void {
     this. formationService.find(this.activatedRoute.snapshot.params['id']).subscribe(
       (data) => {
-        this.formation=data;
-        this.seances=this.formation.seances;
+        this.formation=data[0];
+        this.formationService.findSeances(this.formation.id).subscribe(result=>{
+          this.seances=result;
+        })
       }
     );
   }
@@ -75,9 +77,9 @@ export class FormationItemComponent implements OnInit {
     
     this.seanceService.save(newSeance).subscribe(
       (data) =>{
-        newSeance = data;
-        this.seances.push(newSeance);
-        this.formation.seances=this.seances;
+        this.formationService.findSeances(this.formation.id).subscribe(result=>{
+          this.seances=result;
+        })
         this.seanceForm.reset();
       },(error) => {
         alert('khata2');
@@ -88,30 +90,18 @@ export class FormationItemComponent implements OnInit {
   }
 
   deleteSeance(seance: Seance) {
-    const index: number = this.seances.indexOf(seance);
-    if(index != -1)
-    {
+  
 
       this.seanceService.delete(seance.id).subscribe(
         (data) =>{
-          this.seances.splice(index,1);
-          this.formation.seances= this.seances;
-          
+          this.formationService.findSeances(this.formation.id).subscribe(result=>{
+            this.seances=result;
+          })
         },(error) => {
           alert(seance.id)
         }
       )
-
-      this.formationService.update(this.formation.id,this.formation).subscribe(
-        (data) => {
-          this.formation=data;
-          this.seances=this.formation.seances;
-        },
-        (error) => {
-          console.log(error);
-        }
-      )
-    }
+    
   }
 
   openDialog(seance: Seance): void {

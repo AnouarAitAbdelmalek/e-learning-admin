@@ -17,6 +17,8 @@ export class AdminListComponent implements OnInit, OnDestroy {
 
   ADMINS: Admin[] = [];
 
+  alternative:string="../../../assets/images/profile.png"
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   obs!: Observable<any>;
@@ -91,6 +93,12 @@ export class AdminListComponent implements OnInit, OnDestroy {
     if (this.dataSource) { 
       this.dataSource.disconnect(); 
     }
+  }
+
+  adminImage(admin:Admin)
+  {
+    if(admin.image===""|| admin.image===null) return "../../../assets/images/profile.png"
+    return admin.image;
   }
 
 }

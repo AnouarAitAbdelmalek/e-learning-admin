@@ -96,4 +96,9 @@ export class IntervenantListComponent implements OnInit {
     }
   }
 
+  intervenantImage(intervenant:Intervenant)
+  {
+    if(intervenant.image===null||intervenant.image==="") return "../../../assets/images/profile.png"
+    return intervenant.image;
+  }
 }
