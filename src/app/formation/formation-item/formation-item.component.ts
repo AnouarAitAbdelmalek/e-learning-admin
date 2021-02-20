@@ -7,6 +7,7 @@ import { Seance } from 'src/app/seance/model/seance';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-formation-item',
@@ -42,7 +43,7 @@ export class FormationItemComponent implements OnInit {
     private activatedRoute: ActivatedRoute, 
     public dialog: MatDialog,
     private formationService: FormationService,
-    private seanceService: SeanceService
+    private seanceService: SeanceService,
   ) {}
 
 
@@ -56,6 +57,8 @@ export class FormationItemComponent implements OnInit {
       }
     );
   }
+ 
+
 
   onSubmit() {
 
@@ -82,7 +85,7 @@ export class FormationItemComponent implements OnInit {
         })
         this.seanceForm.reset();
       },(error) => {
-        alert('khata2');
+        
         this.seanceForm.reset();
       }
     )
@@ -127,3 +130,4 @@ export class FormationItemComponent implements OnInit {
 
 
 }
+

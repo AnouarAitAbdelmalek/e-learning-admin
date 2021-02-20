@@ -42,6 +42,7 @@ import { AcceuilComponent } from './acceuil/acceuil.component';
 
 
 
+
 @NgModule({
   declarations: [SidebarComponent, ConfirmationDialogComponent, AcceuilComponent],
   imports: [

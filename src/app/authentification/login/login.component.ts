@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (data) => {
           this.loginInvalid = false;
-          this.router.navigate(['/acceuil']);
+          this.router.navigate(['/categorieList']);
         },
         (error) => {
           this.loginInvalid = true;
